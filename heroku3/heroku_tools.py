@@ -1,6 +1,6 @@
 import requests
 from pydantic import BaseModel, Field
-from composio_tools import Tool,Action
+from shared.composio_tools.lib import Tool,Action
 from typing import Optional, Type
 
 # Actions of Heroku Apps
@@ -200,6 +200,7 @@ class GetAccountInfo(Action):
         headers = authorisation_data["headers"]
         # change the headers to include the version of the API
         headers["Accept"] = "application/vnd.heroku+json; version=3"
+        print(authorisation_data)
         account_info_url = "https://api.heroku.com/account"
 
         account_info_response = requests.get(account_info_url, headers=headers)
