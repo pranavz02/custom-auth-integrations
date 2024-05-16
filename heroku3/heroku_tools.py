@@ -50,10 +50,10 @@ class CreateHerokuAppRequest(BaseModel):
     region: str = Field(..., description="The region where the Heroku app will be deployed.")
     stack: str = Field(..., description="The stack to be used for the Heroku app.")
     # if below field are not provided, they will be set to None by default
-    organization: Optional[str] = Field(None, description="The organization to which the Heroku app will belong.")
-    space: Optional[str] = Field(None, description="The space where the Heroku app will be deployed.")
-    team: Optional[str] = Field(None, description="The team that will own the Heroku app.")
-    personal: Optional[bool] = Field(None, description="Indicates whether the Heroku app is personal.")
+    organization: str = Field(None, description="The organization to which the Heroku app will belong.")
+    space: str = Field(None, description="The space where the Heroku app will be deployed.")
+    team: str = Field(None, description="The team that will own the Heroku app.")
+    personal: bool = Field(None, description="Indicates whether the Heroku app is personal.")
 
 class CreateHerokuAppResponse(BaseModel):
     success: bool = Field(..., description="Indicates whether the app creation was successful.")
@@ -230,9 +230,9 @@ class GetAccountInfo(Action):
         }
 
 class UpdateAccountInfoRequest(BaseModel):
-    allow_tracking: Optional[bool] = Field(None, description="Indicates whether tracking is allowed.")
-    beta: Optional[bool] = Field(None, description="Indicates whether beta features are enabled.")
-    name: Optional[str] = Field(None, description="The name of the account.")
+    allow_tracking: bool = Field(None, description="Indicates whether tracking is allowed.")
+    beta: bool = Field(None, description="Indicates whether beta features are enabled.")
+    name: str = Field(None, description="The name of the account.")
 
 class UpdateAccountInfoResponse(BaseModel):
     success: bool = Field(..., description="Indicates whether the account information update was successful.")
