@@ -29,6 +29,7 @@ class GetHerokuAppInfo(Action):
     
     def execute(self, request: HerokuAppInfoRequest, authorisation_data: dict) -> HerokuAppInfoResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         app_id = request.app_id
         app_info_url = f"https://api.heroku.com/apps/{app_id}"
 
@@ -73,6 +74,7 @@ class CreateHerokuApp(Action):
     
     def execute(self, request: CreateHerokuAppRequest, authorisation_data: dict) -> CreateHerokuAppResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         create_app_url = "https://api.heroku.com/apps"
         app_data = {
             "name": request.app_name,
@@ -123,6 +125,7 @@ class GetHerokuAppList(Action):
     
     def execute(self, request: GetHerokuAppListRequest, authorisation_data: dict) -> GetHerokuAppListResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         app_list_url = "https://api.heroku.com/apps"
 
         app_list_response = requests.get(app_list_url, headers=headers)
@@ -159,6 +162,7 @@ class DeleteHerokuApp(Action):
     
     def execute(self, request: DeleteHerokuAppRequest, authorisation_data: dict) -> DeleteHerokuAppResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         app_id = request.app_id
         delete_app_url = f"https://api.heroku.com/apps/{app_id}"
 
@@ -196,13 +200,11 @@ class GetAccountInfo(Action):
     def response_schema(self) -> BaseModel:
         return GetAccountInfoResponse
     
-    def execute(self, request: GetAccountInfoRequest, authorisation_data: dict) -> GetAccountInfoResponse:
+    def execute(self, request: GetAccountInfoRequest, authorisation_data: dict) -> dict:
         headers = authorisation_data["headers"]
-        # change the headers to include the version of the API
         headers["Accept"] = "application/vnd.heroku+json; version=3"
-        print(authorisation_data)
         account_info_url = "https://api.heroku.com/account"
-
+        
         account_info_response = requests.get(account_info_url, headers=headers)
         if account_info_response.status_code != 200:
             return GetAccountInfoResponse(success=False, account_info=account_info_response.json())
@@ -239,6 +241,7 @@ class UpdateAccountInfo(Action):
     
     def execute(self, request: UpdateAccountInfoRequest, authorisation_data: dict) -> UpdateAccountInfoResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         update_account_info_url = "https://api.heroku.com/account"
 
         account_data = {}
@@ -283,6 +286,7 @@ class GetAccountDelinquencyInfo(Action):
     
     def execute(self, request: AccountDelinquencyInfoRequest, authorisation_data: dict) -> AccountDelinquencyInfoResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         delinquency_info_url = "https://api.heroku.com/account/delinquency"
 
         delinquency_info_response = requests.get(delinquency_info_url, headers=headers)
@@ -320,6 +324,7 @@ class GetAccountFeatureInfo(Action):
     
     def execute(self, request: AccountFeatureInfoRequest, authorisation_data: dict) -> AccountFeatureInfoResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         feature_id_or_name = request.account_feature_id_or_name
         feature_info_url = f"https://api.heroku.com/account/features/{feature_id_or_name}"
 
@@ -357,6 +362,7 @@ class GetAccountFeatureList(Action):
     
     def execute(self, request: AccountFeatureListRequest, authorisation_data: dict) -> AccountFeatureListResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         feature_list_url = "https://api.heroku.com/account/features"
 
         feature_list_response = requests.get(feature_list_url, headers=headers)
@@ -394,6 +400,7 @@ class UpdateAccountFeature(Action):
     
     def execute(self, request: AccountFeatureUpdateRequest, authorisation_data: dict) -> AccountFeatureUpdateResponse:
         headers = authorisation_data["headers"]
+        headers["Accept"] = "application/vnd.heroku+json; version=3"
         feature_id_or_name = request.account_feature_id_or_name
         update_feature_url = f"https://api.heroku.com/account/features/{feature_id_or_name}"
 
