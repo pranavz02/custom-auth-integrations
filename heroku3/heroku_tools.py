@@ -209,10 +209,10 @@ class GetAccountInfo(Action):
         if account_info_response.status_code != 200:
             return GetAccountInfoResponse(success=False, account_info=account_info_response.json())
 
-        return GetAccountInfoResponse(
-            success=True,
-            account_info=account_info_response.json()
-        )
+        return {
+            "success":True,
+            "account_info":account_info_response.json()
+        }
 
 class UpdateAccountInfoRequest(BaseModel):
     allow_tracking: Optional[bool] = Field(None, description="Indicates whether tracking is allowed.")
