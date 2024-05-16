@@ -432,30 +432,3 @@ class Heroku3(Tool):
         return []
 
 __all__ = ["Heroku3"]
-
-def test_heroku_actions():
-    # Heroku API token
-    heroku_api_token = "3bc29419-837a-4cd6-901c-e39f798f4ee7"
-
-    # Mock authorization data
-    authorization_data = {
-        "headers": {
-            "Accept": "application/vnd.heroku+json; version=3",
-            "Authorization": f"Bearer {heroku_api_token}"
-            # Add other headers as needed
-        }
-    }
-
-    # Create an instance of the HerokuTool
-
-    # Instantiate GetHerokuAppInfo action
-    get_app_info_action = GetHerokuAppInfo()
-
-    # Test GetHerokuAppInfo action
-    app_id = "composio"
-    get_app_info_request = HerokuAppInfoRequest(app_id=app_id)
-    app_info_response = get_app_info_action.execute(get_app_info_request, authorization_data)
-    print("Heroku App Information:")
-    print(app_info_response)
-
-test_heroku_actions()
