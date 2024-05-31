@@ -4,15 +4,14 @@ unique_key: twilio
 logo: https://www.twilio.com/content/dam/twilio-com/global/en/homepage/homepage-new/twilio_mark.svg
 categories: [communication] 
 docs: https://www.twilio.com/docs
+
 auth_schemes:
   - scheme_name: twilio_auth
     auth_mode: API_KEY
-    request_url: "https://api.twilio.com/2010-04-01/Accounts.json"
-    default_scopes: ["send_sms"]
     proxy:
       base_url: https://api.twilio.com
-    headers:
-      Authorization: "Basic {{auth_token}}"
+      headers:
+        Authorization: "Bearer {{auth_token}}"
     fields:
       - name: auth_token
         displayName: Auth Token
