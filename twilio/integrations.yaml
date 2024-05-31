@@ -1,5 +1,5 @@
 name: Twilio
-description: Send SMS messages using Twilio
+description: Twilio allows software developers to programmatically make and receive phone calls, send and receive text messages, and perform other communication functions using its web service APIs.
 unique_key: twilio
 logo: https://www.twilio.com/content/dam/twilio-com/global/en/homepage/homepage-new/twilio_mark.svg
 categories: [communication] 
@@ -11,9 +11,11 @@ auth_schemes:
     default_scopes: ["send_sms"]
     proxy:
       base_url: https://api.twilio.com
+    headers:
+      Authorization: "Basic {{auth_token}}"
     fields:
       - name: auth_token
-        display_name: Auth Token
+        displayName: Auth Token
         description: "Your Twilio account auth token for authentication"
         type: string
         required: true
