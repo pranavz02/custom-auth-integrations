@@ -1,0 +1,22 @@
+name: Twilio
+description: Send SMS messages using Twilio
+unique_key: twilio
+logo: https://www.twilio.com/content/dam/twilio-com/global/en/homepage/homepage-new/twilio_mark.svg
+categories: [communication] 
+docs: https://www.twilio.com/docs
+auth_schemes:
+  - scheme_name: twilio_auth
+    auth_mode: API_KEY
+    request_url: "https://api.twilio.com/2010-04-01/Accounts.json"
+    default_scopes: ["send_sms"]
+    proxy:
+      base_url: https://api.twilio.com
+    fields:
+      - field_name: account_sid
+        field_type: string
+        required: true
+      - field_name: auth_token
+        field_type: string
+        required: true
+        secret: true
+        description: Your Twilio account auth token
