@@ -37,7 +37,17 @@ class SendSMS(Action):
         response_data = {"success": False, "response": None}
         url = f"https://api.twilio.com/2010-04-01/Accounts/{request.account_sid}/Messages.json"
         # retrieve auth_token from authorisation_data
-        auth_token = authorisation_data["headers"]["Authorization"].split(" ")[1]
+        try:
+            auth_token = authorisation_data["headers"]["Authorization"].split(" ")[1]
+        except KeyError:
+            return {
+                "execution_details": execution_details,
+                "response_data": response_data,
+                "error": "Authorization header not found in authorisation data",
+                "authorisation_data": authorisation_data,
+                "auth_headers": authorisation_data["headers"]
+            }
+
         
         data = {
             "From": request.from_number,
