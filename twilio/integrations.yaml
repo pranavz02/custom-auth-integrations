@@ -12,11 +12,9 @@ auth_schemes:
     proxy:
       base_url: https://api.twilio.com
     fields:
-      - field_name: account_sid
-        field_type: string
-        required: true
-      - field_name: auth_token
-        field_type: string
+      - name: auth_token
+        display_name: Auth Token
+        description: "Your Twilio account auth token for authentication"
+        type: string
         required: true
         secret: true
-        description: Your Twilio account auth token
