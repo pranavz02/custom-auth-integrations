@@ -75,6 +75,18 @@ class EditEnvVarAction(Action):
     _tags = ["vercel", "environment"]
     _tool_name = "vercel"
 
+    @property
+    def display_name(self):
+        return self._display_name
+    
+    @property   
+    def request_schema(self):
+        return self._request_schema
+    
+    @property
+    def response_schema(self):
+        return self._response_schema
+
     def execute(self, request: EditEnvVarRequest, authorisation_data: dict) -> dict:
         headers = authorisation_data["headers"]
         execution_details = {"executed": False}
