@@ -1,0 +1,37 @@
+name: TinyURL
+unique_key: tinyurl
+docs: https://tinyurl.com/app/dev
+description: TinyURL provides APIs for shortening long URLs into compact, branded links and tracking link analytics.
+logo: https://raw.githubusercontent.com/SamparkAI/open-logos/master/tinyurl-logo.png
+categories: [URL Shortener, Link Management]
+get_current_user_endpoint:
+callback_url: https://backend.composio.dev/api/v1/auth-apps/add
+
+auth_schemes:
+  - scheme_name: tinyurl_api_key
+    auth_mode: API_KEY
+    proxy:  
+      base_url: "https://api.tinyurl.com"
+      headers:
+        Authorization: "Bearer {{api_token}}"  
+    fields:
+      - name: api_token
+        expected_from_customer: true
+        displayName: API Token 
+        description: "Your TinyURL API token, obtained from the TinyURL dashboard settings"
+        type: string
+        required: true
+        
+  - scheme_name: tinyurl_oauth2
+    auth_mode: OAUTH2
+    authorization_url: https://tinyurl.com/oauth/authorize
+    token_url: https://tinyurl.com/oauth/access_token
+    default_scopes: ["basic"]
+    scope_separator: ' '
+    token_access_request_method: POST
+    authorization_params:
+      response_type: code
+    token_params:
+      grant_type: authorization_code
+    proxy:
+      base_url: "https://api.tinyurl.com"
