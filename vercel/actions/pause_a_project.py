@@ -46,15 +46,15 @@ class PauseProjectAction(Action):
     _tool_name = "vercel"
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         return self._display_name
     
     @property   
-    def request_schema(self):
+    def request_schema(self) -> BaseModel:
         return self._request_schema
     
     @property
-    def response_schema(self):
+    def response_schema(self) -> BaseModel:
         return self._response_schema
 
     def execute(self, request: PauseProjectRequest, authorisation_data: dict) -> dict:
