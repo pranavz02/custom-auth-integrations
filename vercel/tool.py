@@ -20,7 +20,7 @@ class Vercel(Tool):
     Tool for managing Vercel projects.
     """
 
-    def actions(self) -> list[t.Type[Action]]:
+    def actions(self) -> list:
         return [
             GetEnvVarsAction,
             FindProjectAction,
@@ -34,7 +34,7 @@ class Vercel(Tool):
             UpdateProjectAction,
         ]
 
-    def triggers(self) -> list[t.Type[Action]]:
+    def triggers(self) -> list:
         return []
 
 __all__ = ["Vercel"]
