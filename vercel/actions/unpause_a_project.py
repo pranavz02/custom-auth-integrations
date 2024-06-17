@@ -1,6 +1,3 @@
-import json
-import os
-
 import requests
 from pydantic import BaseModel, Field
 

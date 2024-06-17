@@ -1,4 +1,3 @@
-import typing as t
 from shared.composio_tools.lib import Action, Tool
 
 from .actions import AddDomainAction, CreateEnvVarAction, CreateProjectAction, DeleteProjectAction, EditEnvVarAction, FindProjectAction, GetEnvVarsAction, PauseProjectAction, UnpauseProjectAction, UpdateProjectAction

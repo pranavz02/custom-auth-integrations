@@ -1,9 +1,5 @@
-import json
-import os
-
 import requests
 from pydantic import BaseModel, Field
-
 from shared.composio_tools.lib import Action
 
 
@@ -21,51 +17,7 @@ class UpdateProjectRequest(BaseModel):
     framework: str = Field(
         default=None,
         description="The framework of the project",
-        examples=[
-            "blitzjs",
-            "nextjs",
-            "gatsby",
-            "remix",
-            "astro",
-            "hexo",
-            "eleventy",
-            "docusaurus-2",
-            "docusaurus",
-            "preact",
-            "solidstart-1",
-            "solidstart",
-            "dojo",
-            "ember",
-            "vue",
-            "scully",
-            "ionic-angular",
-            "angular",
-            "polymer",
-            "svelte",
-            "sveltekit",
-            "sveltekit-1",
-            "ionic-react",
-            "create-react-app",
-            "gridsome",
-            "umijs",
-            "sapper",
-            "saber",
-            "stencil",
-            "nuxtjs",
-            "redwoodjs",
-            "hugo",
-            "jekyll",
-            "brunch",
-            "middleman",
-            "zola",
-            "hydrogen",
-            "vite",
-            "vitepress",
-            "vuepress",
-            "parcel",
-            "sanity",
-            "storybook",
-        ],
+        examples=["blitzjs", "nextjs", "gatsby", "remix", "astro", "hexo", "eleventy", "docusaurus-2", "docusaurus", "preact", "solidstart-1", "solidstart", "dojo", "ember", "vue", "scully", "ionic-angular", "angular", "polymer", "svelte", "sveltekit", "sveltekit-1", "ionic-react", "create-react-app", "gridsome", "umijs", "sapper", "saber", "stencil", "nuxtjs", "redwoodjs", "hugo", "jekyll", "brunch", "middleman", "zola", "hydrogen", "vite", "vitepress", "vuepress", "parcel", "sanity", "storybook"],
     )
 
 
@@ -102,11 +54,11 @@ class UpdateProjectAction(Action):
     @property
     def display_name(self) -> str:
         return self._display_name
-    
-    @property   
+
+    @property
     def request_schema(self) -> BaseModel:
         return self._request_schema
-    
+
     @property
     def response_schema(self) -> BaseModel:
         return self._response_schema
