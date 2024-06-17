@@ -1,0 +1,26 @@
+name: Vercel
+docs: https://vercel.com/docs/api
+unique_key: vercel
+description: Vercel is a cloud platform for static sites and Serverless Functions that fits perfectly with your workflow. It enables developers to host Jamstack websites and web services that deploy instantly, scale automatically, and require no supervision, all with no configuration.
+get_current_user_endpoint: /v1/account
+logo: https://assets.vercel.com/image/upload/front/favicon/vercel/favicon.ico
+callback_url: https://backend.composio.dev/api/v1/auth-apps/add
+categories: [Hosting, Serverless]
+auth-schemes:
+  - scheme_name: vercel_oauth
+    auth_mode: OAUTH2
+    authorization_url: "https://vercel.com/oauth/authorize"
+    token_url: "https://api.vercel.com/v2/oauth/access_token"
+    default_scopes: ["user"]
+    authoriztion_params:
+      response_type: code
+    proxy:
+      base_url: "{{base_url}}"
+    token_params:
+      grant_type: authorization_code
+    fields:
+      - name: base_url
+        displayName: Base URL
+        description: "The base URL for Vercel API requests. For more information, visit https://vercel.com/docs/api"
+        type: string
+        default: https://api.vercel.com
